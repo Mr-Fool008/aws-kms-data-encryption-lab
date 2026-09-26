@@ -66,6 +66,8 @@ Even though the DynamoDB table was encrypted, I could still view the table data 
 
 This demonstrated **transparent encryption and decryption**.
 
+![Authorized DynamoDB access](docs/assets/dynamodb-authorized-access.png)
+
 DynamoDB handles the encryption and decryption process automatically when the requesting identity has the required permissions.
 
 The important lesson was that having access to the DynamoDB table alone is not always enough. The user also needs permission to perform the required KMS actions.
@@ -79,6 +81,8 @@ To test the security controls, I created a separate IAM user.
 The test user had access to DynamoDB but did **not** initially have permission to use the KMS key for decryption.
 
 When I attempted to access the encrypted DynamoDB data using this user, AWS returned an **Access Denied** error.
+
+![KMS decrypt access denied](docs/assets/kms-access-denied.png)
 
 This confirmed that DynamoDB permissions and KMS permissions work together.
 
