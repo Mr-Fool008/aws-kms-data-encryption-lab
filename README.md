@@ -34,6 +34,8 @@ Encryption keys control how data is encrypted and decrypted.
 
 In this project, I used a **symmetric KMS key**, meaning the same key is used for encryption and decryption.
 
+![AWS KMS key configuration](https://nextwork.ai/genuine_green_playful_fairy/uploads/aws-security-kms_a2b3c4d5)
+
 ---
 
 ## Creating the KMS Key
@@ -58,6 +60,8 @@ DynamoDB supports multiple encryption options, including:
 
 For this lab, I selected the **customer-managed key** option so I could directly control the KMS permissions associated with the table.
 
+![DynamoDB customer-managed KMS encryption](https://nextwork.ai/genuine_green_playful_fairy/uploads/aws-security-kms_q8r9s0t1)
+
 ---
 
 ## Understanding Data Visibility
@@ -66,7 +70,7 @@ Even though the DynamoDB table was encrypted, I could still view the table data 
 
 This demonstrated **transparent encryption and decryption**.
 
-![Authorized DynamoDB access](docs/assets/dynamodb-authorized-access.png)
+![Authorized DynamoDB access](https://nextwork.ai/genuine_green_playful_fairy/uploads/aws-security-kms_c0d1e2f3)
 
 DynamoDB handles the encryption and decryption process automatically when the requesting identity has the required permissions.
 
@@ -82,7 +86,7 @@ The test user had access to DynamoDB but did **not** initially have permission t
 
 When I attempted to access the encrypted DynamoDB data using this user, AWS returned an **Access Denied** error.
 
-![KMS decrypt access denied](docs/assets/kms-access-denied.png)
+![KMS decrypt access denied](https://nextwork.ai/genuine_green_playful_fairy/uploads/aws-security-kms_w0x1y2z3)
 
 This confirmed that DynamoDB permissions and KMS permissions work together.
 
@@ -99,6 +103,8 @@ This allowed the user to perform actions including encryption and decryption wit
 After updating the permissions, I retried access to the DynamoDB table.
 
 The test user could now view the encrypted data successfully.
+
+![KMS access restored for the test user](https://nextwork.ai/genuine_green_playful_fairy/uploads/aws-security-kms_feffb2fb8)
 
 This validated that KMS key permissions were the control preventing access during the earlier test.
 
